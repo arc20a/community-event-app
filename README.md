@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# 地域イベント一覧ページ (EventListPage)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+このページは、市川市の地域イベントを一覧で表示する React コンポーネントです。  
+PCでは横並び、スマホでは縦並びでカードが自動調整される **レスポンシブデザイン** になっています。
 
-## Available Scripts
+## ディレクトリ構成
 
-In the project directory, you can run:
 
-### `npm start`
+## 使用技術
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- React Router (v6)
+- CSS in JS（style 属性で直接スタイル指定）
+- ES6 JavaScript
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 主な機能
 
-### `npm test`
+1. **イベントカード表示**
+   - `EventCard` コンポーネントを使用
+   - タイトル・日付・場所・画像を表示
+   - ホバーで浮き上がるアニメーション
+   - クリックでイベント詳細ページへ遷移
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **レスポンシブデザイン**
+   - PC: 横並び（画面幅に応じて列数自動調整）
+   - スマホ: 縦並び
 
-### `npm run build`
+3. **ログアウト機能**
+   - 上部右にログアウトボタン配置
+   - `onLogout` コールバックで親コンポーネント(App.js)に通知
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **管理者専用ボタン**
+   - ログイン中のユーザーが管理者(`role === "admin"`)の場合のみ表示
+   - 顧客一覧ページへ遷移
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 目次
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. [セットアップ手順](#セットアップ手順)  
+2. [使用技術・ライブラリ](#使用技術・ライブラリ)  
+3. [実装機能の説明](#実装機能の説明)  
+4. [動作確認方法](#動作確認方法)  
+5. [ファイル構成](#ファイル構成)  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## セットアップ手順
 
-## Learn More
+1. プロジェクトをクローンまたは新規作成
+   ```bash
+   git clone <リポジトリURL>
+   cd community-event-app
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. ホームページ
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ログイン前でも閲覧可能
 
-### Code Splitting
+注目イベントをバナー形式で表示
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+最新イベント情報の文字アニメーションあり
 
-### Analyzing the Bundle Size
+2. ログイン機能
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ユーザー名でログイン
 
-### Making a Progressive Web App
+管理者ユーザー（ admin）は自動的に管理者画面へ
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+一般ユーザー（event）はイベント一覧ページへ
 
-### Advanced Configuration
+ログイン画面は背景グラデーション・アイコン付きで視覚的に華やか
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. イベント一覧ページ
 
-### Deployment
+全ユーザーアクセス可能
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+レスポンシブデザイン（PCは横並び、スマホは縦並び）
 
-### `npm run build` fails to minify
+動作確認方法
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+アプリを起動（npm start）
+
+ホームページにアクセス（/home）
+
+注目イベントバナーの表示を確認
+
+ログイン画面に移動し、以下のユーザーで確認
+
+管理者: admin または manager → 顧客一覧ページへ遷移
+
+一般ユーザー: その他の名前 → イベント一覧ページへ遷移
+
+イベントカードをクリックして詳細ページへ遷移
+
+戻るボタンで一覧ページへ戻れることを確認
+
+ログアウトボタンでログアウト可能
